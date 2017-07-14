@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+
+  <xs:element name="pizza" type="pizza"/>
+
+  <xs:complexType name="address">
+    <xs:annotation>
+      <xs:documentation><![CDATA[The location of a customer]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="street" type="xs:string"/>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="state" type="xs:string"/>
+      <xs:element name="zip" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customer">
+    <xs:annotation>
+      <xs:documentation><![CDATA[A customer is somebody who buys a pizza]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="phone" type="xs:string"/>
+      <xs:element minOccurs="0" name="address" type="address"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pizza">
+    <xs:annotation>
+      <xs:documentation><![CDATA[The product we sell]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="size" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="toppings" type="topping"/>
+      <xs:element minOccurs="0" name="customer" type="customer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="topping">
+    <xs:annotation>
+      <xs:documentation><![CDATA[A topping that can go on a pizza]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="receipt">
+    <xs:annotation>
+      <xs:documentation><![CDATA[Invoice for a pizza purchase]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="orderNumber" type="xs:long"/>
+      <xs:element name="total" type="xs:float"/>
+      <xs:element minOccurs="0" name="pizza" type="xs:string"/>
+      <xs:element minOccurs="0" name="deliveryAddress" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
